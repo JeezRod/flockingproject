@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace FlockingBackend
-{
+namespace FlockingSimulation{
     ///<summary>
     ///This class is used to represent a single raven. 
     ///This class is just a starting point. Complete the TODO sections

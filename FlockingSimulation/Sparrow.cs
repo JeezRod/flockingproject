@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace FlockingBackend
+namespace FlockingSimulation
 {
     ///<summary>
     ///This class is used to represent a single sparrow. 
