@@ -48,6 +48,21 @@ namespace FlockingBackend
             return new Vector2(u.vx * c, u.vy * c);
         }
 
+        /*
+        *   This method takes two vectors and calculates the square root of the distance.
+        */
+        public static float DistanceSquared(Vector2 u, Vector2 v){
+            return (float)Math.Sqrt(Math.Pow((u.vx - v.vx), 2) + Math.Pow((u.vy - v.vy), 2));
+        }
+
+        /*
+        *   This method Normalizes a vector and returns a new Vector.
+        */
+        public static Vector2 NormalizeVector(Vector2 u){
+            float magnitud = (float)Math.Sqrt((u.vx*u.vx) + (u.vy*u.vy));
+            return new Vector2(u.vx/magnitud, u.vy/magnitud);
+        }
+
         public override string ToString()
         {
             return vx +", "+ vy;
