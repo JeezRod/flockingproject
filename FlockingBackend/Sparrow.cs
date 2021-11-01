@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 
-namespace FlockingSimulation
+namespace FlockingBackend
 {
     ///<summary>
     ///This class is used to represent a single sparrow. 
     ///This class is just a starting point. Complete the TODO sections
     ///</summary>
-    public class Sparrow
+    public class Sparrow : Bird
     {
         //TODO: Add the constructor, properties and fields as specified in the instructions document.
 
