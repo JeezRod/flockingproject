@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FlockingBackend
 {
-    abstract class Bird
+    public abstract class Bird
     {
         public float Rotation{get;}
 
@@ -11,12 +11,15 @@ namespace FlockingBackend
 
         public Vector2 Velocity{get; protected set;}
 
+        public World world;
+
         protected Vector2 amountToSteer;
 
         //parameter-less constructor to random posstion and velocity
         public Bird(){
             Random ran = new Random();
-            this.Position = new Vector2(ran.Next(World.Height), ran.Next(World.Width));
+            world = new World();
+            this.Position = new Vector2(ran.Next(world.Height), ran.Next(world.Width));
             this.Velocity = new Vector2(ran.Next(-4, 5), ran.Next(-4, 5));
             this.amountToSteer = new Vector2(0,0);
 
@@ -35,21 +38,21 @@ namespace FlockingBackend
        public void AppearOnOppositeSide()
        {
     
-           if (this.Position.Vx > World.Width)
+           if (this.Position.Vx > world.Width)
             {
                 this.Position = new Vector2(0, this.Position.Vy);
             }
             else if(this.Position.Vx < 0)
             {
-                 this.Position = new Vector2(World.Width, this.Position.Vy);
+                 this.Position = new Vector2(world.Width, this.Position.Vy);
             }
-            if (this.Position.Vy > World.Height)
+            if (this.Position.Vy > world.Height)
             {
                 this.Position = new Vector2(this.Position.Vx, 0);
             }
             else if(this.Position.Vy < 0)
             {
-                this.Position= new Vector2(this.Position.Vx, World.Height);
+                this.Position= new Vector2(this.Position.Vx, world.Height);
             }
        }
 
