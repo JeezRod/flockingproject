@@ -16,24 +16,7 @@ namespace FlockingBackend
         public Sparrow(int posVx, int posVy, int velVx, int velVy): base(posVx, posVy, velVx, velVy){
 
         }
-        //TODO: Add the constructor, properties and fields as specified in the instructions document.
 
-        ///<value> Property <c>Rotation</c> to rotate the Sparrow to face the direction it is moving toward.</value>
-        public float Rotation
-        {
-            get 
-            {
-                return (float)Math.Atan2(this.Velocity.Vy, this.Velocity.Vx); 
-            }
-        }
-
-        ///<summary>
-        ///This method is an event handler that updates the velocity and position of a sparrow.
-        ///</summary>
-        public void Move()
-        {
-            //TODO: 
-        }
         ///<summary>
         ///This method is an event handler to calculate and set amountToSteer vector using the flocking algorithm rules
         ///</summary>
@@ -74,33 +57,36 @@ namespace FlockingBackend
             }
             return result;
         }
-        // private Vector2 Cohesion (List<Sparrow> sparrows);
+        
+        private Vector2 Cohesion (List<Sparrow> sparrows){
+            double distance;
+            int countSp = 0;
+            Vector2 result = new Vector2(0,0);
+            foreach(Sparrow sp in sparrows){
+                distance =Vector2.DistanceSquared(this.Position, sp.Position);
+                if(distance < world.NeighbourRadius && sp != this){
+                    result += sp.Position;
+                    countSp ++;
+                }
+            }
+            if(countSp != 0 ){
+                //average 
+                result = result/countSp;
+                //Normalize vector
+                result = Vector2.NormalizeVector(result);
+                // result is average position
+                result = result - this.Position;
+                result = Vector2.NormalizeVector(result);
+
+                result = result * world.MaxSpeed;
+
+                result = result - this.Velocity;
+                result = Vector2.NormalizeVector(result);  
+            }
+            return result;
+        }
         // private Vector2 Avoidance (List<Sparrow> sparrows);
         // private Vector2 FleeRaven(Raven raven);
         
-       
-       ///<summary>
-        ///This method is a private helper method to make sparrows reappear on the opposite edge if they go outside the bounds of the screen
-        ///</summary>
-       private void AppearOnOppositeSide()
-       {
-    
-           if (this.Position.Vx > world.Width)
-            {
-                this.Position = new Vector2(0, this.Position.Vy);
-            }
-            else if(this.Position.Vx < 0)
-            {
-                 this.Position = new Vector2(world.Width, this.Position.Vy);
-            }
-            if (this.Position.Vy > world.Height)
-            {
-                this.Position = new Vector2(this.Position.Vx, 0);
-            }
-            else if(this.Position.Vy < 0)
-            {
-                this.Position= new Vector2(this.Position.Vx, world.Height);
-            }
-       }
     }
 }
