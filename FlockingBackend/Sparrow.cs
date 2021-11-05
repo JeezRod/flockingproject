@@ -9,29 +9,19 @@ namespace FlockingBackend
     ///</summary>
     public class Sparrow : Bird
     {
-        //TODO: Add the constructor, properties and fields as specified in the instructions document.
 
-        ///<value> Property <c>Rotation</c> to rotate the Sparrow to face the direction it is moving toward.</value>
-        public float Rotation
-        {
-            get 
-            {
-                return (float)Math.Atan2(this.velocity.Y, this.velocity.X); 
-            }
+        public Sparrow(): base(){
         }
 
-        ///<summary>
-        ///This method is an event handler that updates the velocity and position of a sparrow.
-        ///</summary>
-        public void Move()
-        {
-            //TODO: 
+        public Sparrow(int posVx, int posVy, int velVx, int velVy): base(posVx, posVy, velVx, velVy){
+
         }
+
         ///<summary>
         ///This method is an event handler to calculate and set amountToSteer vector using the flocking algorithm rules
         ///</summary>
         ///<param name="sparrows">List of sparrows</param>
-        public void CalculateBehaviour(List<Sparrow> sparrows) 
+        public override void CalculateBehaviour(List<Sparrow> sparrows) 
         {
             //TODO: Set the amountToSteer vector with the vectors returned by 
             //Cohesion, Alignment, Avoidance methods
@@ -47,34 +37,56 @@ namespace FlockingBackend
 
         //TODO: Code the following private helper methods to implement the flocking algorithm rules. 
         //The method headers are declared below:
-        private Vector2 Alignment (List<Sparrow> sparrows);
-        private Vector2 Cohesion (List<Sparrow> sparrows);
-        private Vector2 Avoidance (List<Sparrow> sparrows);
-        private Vector2 FleeRaven(Raven raven);
+        private Vector2 Alignment (List<Sparrow> sparrows){
+            double distance;
+            int countSp = 0;
+            Vector2 result = new Vector2(0,0);
+            foreach(Sparrow sp in sparrows){
+                distance =Vector2.DistanceSquared(this.Position, sp.Position);
+                if(distance < world.NeighbourRadius && sp != this){
+                    result += sp.Velocity;
+                    countSp ++;
+                }
+            }
+            if(countSp != 0 ){
+                result = result/countSp;
+                result = Vector2.NormalizeVector(result);
+                result = result * world.MaxSpeed;
+                result = result - this.Velocity;
+                result = Vector2.NormalizeVector(result);
+            }
+            return result;
+        }
         
-       
-       ///<summary>
-        ///This method is a private helper method to make sparrows reappear on the opposite edge if they go outside the bounds of the screen
-        ///</summary>
-       private void AppearOnOppositeSide()
-       {
-    
-           if (this.Position.X > World.Width)
-            {
-                this.Position = new Vector2(0, this.Position.Y);
+        private Vector2 Cohesion (List<Sparrow> sparrows){
+            double distance;
+            int countSp = 0;
+            Vector2 result = new Vector2(0,0);
+            foreach(Sparrow sp in sparrows){
+                distance =Vector2.DistanceSquared(this.Position, sp.Position);
+                if(distance < world.NeighbourRadius && sp != this){
+                    result += sp.Position;
+                    countSp ++;
+                }
             }
-            else if(this.Position.X < 0)
-            {
-                 this.Position = new Vector2(World.Width, this.Position.Y);
+            if(countSp != 0 ){
+                //average 
+                result = result/countSp;
+                //Normalize vector
+                result = Vector2.NormalizeVector(result);
+                // result is average position
+                result = result - this.Position;
+                result = Vector2.NormalizeVector(result);
+
+                result = result * world.MaxSpeed;
+
+                result = result - this.Velocity;
+                result = Vector2.NormalizeVector(result);  
             }
-            if (this.Position.Y > World.Height)
-            {
-                this.Position = new Vector2(this.Position.X, 0);
-            }
-            else if(this.position.Y < 0)
-            {
-                this.Position= new Vector2(this.Position.X, World.Height);
-            }
-       }
+            return result;
+        }
+        // private Vector2 Avoidance (List<Sparrow> sparrows);
+        // private Vector2 FleeRaven(Raven raven);
+        
     }
 }
