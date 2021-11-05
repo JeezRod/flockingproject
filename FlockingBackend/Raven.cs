@@ -1,18 +1,27 @@
 using System;
 using System.Collections.Generic;
 
-<<<<<<< HEAD
-namespace FlockingBackend
-{
-=======
 namespace FlockingBackend{
->>>>>>> 42a2b46db08f525094cda970509dd36014484123
     ///<summary>
     ///This class is used to represent a single raven. 
     ///This class is just a starting point. Complete the TODO sections
     ///</summary>
-    public class Raven: Bird
+    public class Raven : Bird
     {
+        //TODO: Add the constructor, properties and fields as specified in the instructions document.
+        public Raven(): base(){}
+
+        public Raven(int posVx, int posVy, int velVx, int velVy): base(posVx, posVy, velVx, velVy){}
+
+        ///<value> Property <c>Rotation</c> to rotate the raven to face the direction it is moving toward.</value>
+        public float Rotation
+        {
+            get 
+            {
+                return (float)Math.Atan2(this.Velocity.Vy, this.Velocity.Vx); 
+            }
+        }
+
         ///<summary>
         ///This method is an event handler that updates the velocity and position of a raven.
         ///</summary>

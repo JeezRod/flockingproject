@@ -7,24 +7,10 @@ namespace FlockingBackend
     ///This class is used to represent a single sparrow. 
     ///This class is just a starting point. Complete the TODO sections
     ///</summary>
-<<<<<<< HEAD
     public class Sparrow: Bird
     { 
         public Sparrow(): base(){
             
-=======
-    public class Sparrow : Bird
-    {
-        //TODO: Add the constructor, properties and fields as specified in the instructions document.
-
-        ///<value> Property <c>Rotation</c> to rotate the Sparrow to face the direction it is moving toward.</value>
-        public float Rotation
-        {
-            get 
-            {
-                return (float)Math.Atan2(this.velocity.Y, this.velocity.X); 
-            }
->>>>>>> 42a2b46db08f525094cda970509dd36014484123
         }
 
         public Sparrow(int posVx, int posVy, int velVx, int velVy): base(posVx, posVy, velVx, velVy){
