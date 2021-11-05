@@ -104,7 +104,17 @@ namespace FlockingBackend
             }
             return result;
         }
-        
+        private Vector2 FleeRaven(Raven raven){
+            Vector2 result = new Vector2(0,0);
+            float distance = Vector2.DistanceSquared(this.Position, raven.Position);
+            if(distance < world.AvoidanceRadius){
+                result = this.Position - raven.Position;
+                result = result/distance;
+                result = Vector2.NormalizeVector(result);
+                result = result * world.MaxSpeed;
+            }
+            return result;
+        }
 
     }
 }
