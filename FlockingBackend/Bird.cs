@@ -5,7 +5,13 @@ namespace FlockingBackend
 {
     public abstract class Bird
     {
-        public float Rotation{get;}
+        public float Rotation
+        {
+            get 
+            {
+                return (float)Math.Atan2(this.Velocity.Vy, this.Velocity.Vx); 
+            }
+        }
 
         public Vector2 Position{get; protected set;}
 
@@ -31,6 +37,10 @@ namespace FlockingBackend
             this.Velocity = new Vector2(velVx, velVy);
             this.amountToSteer = new Vector2(0,0);
         }
+
+        //TODO: Add the constructor, properties and fields as specified in the instructions document.
+
+        ///<value> Property <c>Rotation</c> to rotate the raven to face the direction it is moving toward.</value>
 
         ///<summary>
         ///This method is a private helper method to make bird objects reappear on the opposite edge if they go outside the bounds of the screen
