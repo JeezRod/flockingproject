@@ -38,7 +38,7 @@ namespace FlockingBackend
         //TODO: Code the following private helper methods to implement the flocking algorithm rules. 
         //The method headers are declared below:
         private Vector2 Alignment (List<Sparrow> sparrows){
-            double distance;
+            float distance;
             int countSp = 0;
             Vector2 result = new Vector2(0,0);
             foreach(Sparrow sp in sparrows){
@@ -59,7 +59,7 @@ namespace FlockingBackend
         }
         
         private Vector2 Cohesion (List<Sparrow> sparrows){
-            double distance;
+            float distance;
             int countSp = 0;
             Vector2 result = new Vector2(0,0);
             foreach(Sparrow sp in sparrows){
@@ -85,8 +85,26 @@ namespace FlockingBackend
             }
             return result;
         }
-        // private Vector2 Avoidance (List<Sparrow> sparrows);
-        // private Vector2 FleeRaven(Raven raven);
+        private Vector2 Avoidance (List<Sparrow> sparrows){
+            float distance;
+            int countSp = 0;
+            Vector2 result = new Vector2(0,0);
+            foreach(Sparrow sp in sparrows){
+                distance = Vector2.DistanceSquared(this.Position, sp.Position);
+                if(distance < world.AvoidanceRadius && sp != this){
+                    result = this.Position - sp.Position;
+                    result += result / distance;
+                    countSp++;
+                }
+            }
+            if(countSp != 0){
+                result = result / countSp;
+                result = result - this.Velocity;
+                result = Vector2.NormalizeVector(result);
+            }
+            return result;
+        }
         
+
     }
 }
