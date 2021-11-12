@@ -33,7 +33,6 @@ namespace FlockingBackend
         public World(){
             _flock = new Flock();
             _sparrows = PopulateSparrow();
-            _flock.RaiseMoveEvents(_sparrows, _raven);
             _raven = new Raven();
         }
 
@@ -59,6 +58,10 @@ namespace FlockingBackend
                 newList.Add(new Sparrow());
             }
             return newList;
+        }
+
+        public void Update(){
+            _flock.RaiseMoveEvents(_sparrows, _raven);
         }
     }
 }
