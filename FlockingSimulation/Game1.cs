@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
+using FlockingBackend;
 
 namespace FlockingSimulation
 {
@@ -9,16 +11,27 @@ namespace FlockingSimulation
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private World world;
+
+        private SparrowFlockSprite sparrowFlockSprite;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            world = new World();
         }
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            _graphics.PreferredBackBufferHeight = 1400;
+            _graphics.PreferredBackBufferWidth = 1000;
+
+            sparrowFlockSprite = new SparrowFlockSprite(this, world.Sparrows);
+            Components.Add(sparrowFlockSprite);
+
+            _graphics.ApplyChanges();
 
             base.Initialize();
         }
@@ -35,7 +48,7 @@ namespace FlockingSimulation
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            world.Update();
 
             base.Update(gameTime);
         }
