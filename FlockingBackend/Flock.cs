@@ -10,6 +10,9 @@ namespace FlockingBackend
     public class Flock
     {
         //TODO: Add the events. See instructions for details
+        private event Delegates.CalculateMoveVector CalcMovementEvent;
+        private event Delegates.CalculateRavenAvoidance calcRavenFleeEvent;
+        private event Delegates.MoveBird MoveEvent;
 
         //TODO: Add a Subscribe method that takes as input a CalculateMoveVector delegate instance, 
         //a MoveBird delegate instance and an optional CalculateRavenAvoidance delegate instance and

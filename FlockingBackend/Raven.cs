@@ -13,11 +13,6 @@ namespace FlockingBackend{
 
         public Raven(int posVx, int posVy, int velVx, int velVy): base(posVx, posVy, velVx, velVy){}
 
-        ///<value> Property <c>Rotation</c> to rotate the raven to face the direction it is moving toward.</value>
-
-        ///<summary>
-        ///This method is an event handler that updates the velocity and position of a raven.
-        ///</summary>
 
         ///<summary>
         ///This method is an event handler to calculate and set amountToSteer vector
@@ -27,11 +22,13 @@ namespace FlockingBackend{
         {
             //TODO: Set the amountToSteer vector with the vector returned by the ChaseSparrow.
         }
-
         //TODO: Code the following private helper methods to implement chase sparrows.
         //The method header are declared below:
-        private Vector2 ChaseSparrow (List<Sparrow> sparrows){
-
-        }
+        // private Vector2 ChaseSparrow (List<Sparrow> sparrows);
+        
+       
+       ///<summary>
+        ///This method is a private helper method to make sparrows reappear on the opposite edge if they go outside the bounds of the screen
+        ///</summary>
     }
 }
