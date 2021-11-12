@@ -12,11 +12,18 @@ namespace FlockingBackend
         //TODO: Add the events. See instructions for details
         private event Delegates.CalculateMoveVector calcMovementEvent;
         private event Delegates.CalculateRavenAvoidance calcRavenFleeEvent;
-        private event Delegates.MoveBird MoveEvent;
+        private event Delegates.MoveBird moveEvent;
 
         //TODO: Add a Subscribe method that takes as input a CalculateMoveVector delegate instance, 
         //a MoveBird delegate instance and an optional CalculateRavenAvoidance delegate instance and
         // subscribes them to the corresponding events
+        public void Subscribe(Delegates.CalculateMoveVector calculateMoveVector, Delegates.MoveBird moveBird, Delegates.CalculateRavenAvoidance calRavenAv = default){
+            
+            calcMovementEvent += calculateMoveVector;
+            moveEvent += moveBird;
+            calcRavenFleeEvent += calRavenAv;
+
+        }
 
         ///<summary>
         ///This method raises the calculate and move events
@@ -27,7 +34,8 @@ namespace FlockingBackend
         {
             calcMovementEvent?.Invoke(sparrows);
             calcRavenFleeEvent?.Invoke(raven);
-            MoveEvent?.Invoke();
+            moveEvent?.Invoke();
+            //TODO
         }
 
         

@@ -34,6 +34,8 @@ namespace FlockingBackend
             _flock = new Flock();
             _sparrows = PopulateSparrow();
             _raven = new Raven();
+            // Subscribing the raven
+            _flock.Subscribe(_raven.CalculateBehaviour, _raven.Move);
         }
 
         public Raven Raven{get{ return this._raven;}}
@@ -55,7 +57,10 @@ namespace FlockingBackend
         private List<Sparrow> PopulateSparrow(){
             List<Sparrow> newList = new List<Sparrow>();
             for(int i=0; i<_initialCount; i++){
-                newList.Add(new Sparrow());
+                Sparrow s = new Sparrow();
+                //Subscribe the Sparrow
+                _flock.Subscribe(s.CalculateBehaviour, s.Move, s.CalculateRavenAvoidance);
+                newList.Add(s);
             }
             return newList;
         }
