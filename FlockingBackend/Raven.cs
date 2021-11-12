@@ -21,7 +21,7 @@ namespace FlockingBackend{
         public override void CalculateBehaviour(List<Sparrow> sparrows) 
         {
             //TODO: Set the amountToSteer vector with the vector returned by the ChaseSparrow.
-            this.amountToSteer += ChaseSparrow(sparrows);
+            this.amountToSteer = ChaseSparrow(sparrows);
         }
 
         
