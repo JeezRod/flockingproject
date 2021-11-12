@@ -10,7 +10,7 @@ namespace FlockingBackend
     public class Flock
     {
         //TODO: Add the events. See instructions for details
-        private event Delegates.CalculateMoveVector CalcMovementEvent;
+        private event Delegates.CalculateMoveVector calcMovementEvent;
         private event Delegates.CalculateRavenAvoidance calcRavenFleeEvent;
         private event Delegates.MoveBird MoveEvent;
 
@@ -25,7 +25,9 @@ namespace FlockingBackend
         ///<param name="raven">A Raven object</param>
         public void RaiseMoveEvents(List<Sparrow> sparrows, Raven raven)
         {
-            //TODO
+            calcMovementEvent?.Invoke(sparrows);
+            calcRavenFleeEvent?.Invoke(raven);
+            MoveEvent?.Invoke();
         }
 
         
