@@ -3,9 +3,11 @@ using System.Collections.Generic;
 
 namespace FlockingBackend
 {
-    public delegate void CalculateMoveVector(List<Sparrow> sp);
+    public class Delegates{
+        public delegate void CalculateMoveVector(List<Sparrow> sp);
 
-    public delegate void MoveBird();
+        public delegate void MoveBird();
 
-    public delegate void CalculateRavenAvoidance(Raven rv);
+        public delegate void CalculateRavenAvoidance(Raven rv);
+    }
 }
