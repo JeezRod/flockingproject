@@ -21,14 +21,42 @@ namespace FlockingBackend{
         public override void CalculateBehaviour(List<Sparrow> sparrows) 
         {
             //TODO: Set the amountToSteer vector with the vector returned by the ChaseSparrow.
+            this.amountToSteer = ChaseSparrow(sparrows);
         }
-        //TODO: Code the following private helper methods to implement chase sparrows.
-        //The method header are declared below:
-        // private Vector2 ChaseSparrow (List<Sparrow> sparrows);
+
         
+        ///<summary>
+        ///This method is an event handler that updates the velocity and position of a bird object.
+        ///</summary>
+       public override void Move(){
+           
+           this.Velocity += this.amountToSteer;
+           this.Velocity = Vector2.NormalizeVector(this.Velocity) * world.MaxSpeed;
+           this.Position += this.Velocity;
+           AppearOnOppositeSide();
+       }
        
        ///<summary>
         ///This method is a private helper method to make sparrows reappear on the opposite edge if they go outside the bounds of the screen
         ///</summary>
+
+        private Vector2 ChaseSparrow(List<Sparrow> sparrows){
+            float distance;
+            Sparrow nearSparrow = null;
+            Vector2 result = new Vector2(0,0);
+            foreach(Sparrow sp in sparrows){
+                distance = Vector2.DistanceSquared(this.Position, sp.Position);
+                if(distance < world.AvoidanceRadius){
+                    // set the sparrow as the nearest to raven
+                    nearSparrow = sp;
+                }
+            }
+
+            if(nearSparrow != null){
+                return nearSparrow.Position - this.Position;
+            }
+
+            return result;
+        }
     }
 }

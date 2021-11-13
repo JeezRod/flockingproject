@@ -75,7 +75,7 @@ namespace FlockingBackend
         ///<summary>
         ///This method is an event handler that updates the velocity and position of a bird object.
         ///</summary>
-       public void Move(){
+       public virtual void Move(){
            this.Velocity += this.amountToSteer;
            this.Position += this.Velocity;
            AppearOnOppositeSide();
