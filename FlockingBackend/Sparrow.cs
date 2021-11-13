@@ -25,6 +25,8 @@ namespace FlockingBackend
         {
             //TODO: Set the amountToSteer vector with the vectors returned by 
             //Cohesion, Alignment, Avoidance methods
+            
+            this.amountToSteer = Alignment(sparrows) + Cohesion(sparrows) + Avoidance(sparrows);
         }
         ///<summary>
         ///This method is an event handler to calculate and update amountToSteer vector with the amount to steer to flee a chasing raven
@@ -33,6 +35,8 @@ namespace FlockingBackend
         public void CalculateRavenAvoidance(Raven raven)
         {
              //TODO: Add the vector returned by FleeRaven to the amountToSteer vector.
+             this.amountToSteer += FleeRaven(raven);
+             
         }
 
         //TODO: Code the following private helper methods to implement the flocking algorithm rules. 
