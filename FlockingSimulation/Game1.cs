@@ -9,11 +9,14 @@ namespace FlockingSimulation
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
+
         private SpriteBatch _spriteBatch;
 
         private World world;
 
         private SparrowFlockSprite sparrowFlockSprite;
+
+        private RavenFlockSprite ravenFlockSprite;
 
         public Game1()
         {
@@ -30,6 +33,9 @@ namespace FlockingSimulation
 
             sparrowFlockSprite = new SparrowFlockSprite(this, world._sparrows);
             Components.Add(sparrowFlockSprite);
+
+            ravenFlockSprite = new RavenFlockSprite(this, world._raven);
+            Components.Add(ravenFlockSprite);
 
             _graphics.ApplyChanges();
 
