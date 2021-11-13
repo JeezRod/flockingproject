@@ -52,7 +52,7 @@ namespace FlockingBackend
         *   This method takes two vectors and calculates the square root of the distance.
         */
         public static float DistanceSquared(Vector2 u, Vector2 v){
-            return (float)Math.Sqrt(Math.Pow((u.vx - v.vx), 2) + Math.Pow((u.vy - v.vy), 2));
+            return (float)(Math.Pow((u.vx - v.vx), 2) + Math.Pow((u.vy - v.vy), 2));
         }
 
         /*
@@ -60,7 +60,10 @@ namespace FlockingBackend
         */
         public static Vector2 NormalizeVector(Vector2 u){
             float magnitud = (float)Math.Sqrt((u.vx*u.vx) + (u.vy*u.vy));
-            return new Vector2(u.vx/magnitud, u.vy/magnitud);
+            if(magnitud != 0){
+                return new Vector2(u.vx / magnitud, u.vy / magnitud);
+            }
+            return new Vector2(0,0);
         }
 
         public override string ToString()
