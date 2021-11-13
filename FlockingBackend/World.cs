@@ -6,15 +6,15 @@ namespace FlockingBackend
 {
     public class World
     {
-        private Flock _flock;
-        private Raven _raven;
-        private List<Sparrow> _sparrows;
-        private static readonly int _initialCount;
-        private static readonly int _width;
-        private static readonly int _height;
-        private static readonly int _maxSpeed;
-        private static readonly int _neighbourRadius;
-        private static readonly int _avoidanceRadius;
+        public Flock _flock;
+        public Raven _raven;
+        public List<Sparrow> _sparrows = new List<Sparrow>();
+        public static readonly int _initialCount;
+        public static readonly int _width;
+        public static readonly int _height;
+        public static readonly int _maxSpeed;
+        public static readonly int _neighbourRadius;
+        public static readonly int _avoidanceRadius;
 
         static World(){
             _initialCount = 150;
@@ -37,22 +37,6 @@ namespace FlockingBackend
             // Subscribing the raven
             _flock.Subscribe(_raven.CalculateBehaviour, _raven.Move);
         }
-
-        public Raven Raven{get{ return this._raven;}}
-
-        public List<Sparrow> Sparrows{get {return this._sparrows;}}
-
-        public int InitialCount{get{return _initialCount;}}
-
-        public int Width{get{return _width;}}
-
-        public int Height{get{return _height;}}
-
-        public int MaxSpeed{get{return _maxSpeed;}}
-
-        public int NeighbourRadius{get{return _neighbourRadius;}}
-
-        public int AvoidanceRadius{get{return _avoidanceRadius;}}
 
         private List<Sparrow> PopulateSparrow(){
             List<Sparrow> newList = new List<Sparrow>();

@@ -31,7 +31,7 @@ namespace FlockingBackend{
        public override void Move(){
            
            this.Velocity += this.amountToSteer;
-           this.Velocity = Vector2.NormalizeVector(this.Velocity) * world.MaxSpeed;
+           this.Velocity = Vector2.NormalizeVector(this.Velocity) * World._maxSpeed;
            this.Position += this.Velocity;
            AppearOnOppositeSide();
        }
@@ -46,7 +46,7 @@ namespace FlockingBackend{
             Vector2 result = new Vector2(0,0);
             foreach(Sparrow sp in sparrows){
                 distance = Vector2.DistanceSquared(this.Position, sp.Position);
-                if(distance < world.AvoidanceRadius){
+                if(distance < World._avoidanceRadius){
                     // set the sparrow as the nearest to raven
                     nearSparrow = sp;
                 }
