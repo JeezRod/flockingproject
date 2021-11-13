@@ -73,7 +73,7 @@ namespace FlockingBackend
                     countSp ++;
                 }
             }
-            if(countSp != 0 ){
+            if(countSp != 0){
                 //average 
                 result = result/countSp;
                 //Normalize vector

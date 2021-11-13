@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/FlockingUnitTests/bin/Debug/net5.0/FlockingUnitTests.dll",
+            "program": "${workspaceFolder}/FlockingSimulation/bin/Debug/netcoreapp3.1/FlockingSimulation.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/FlockingUnitTests",
+            "cwd": "${workspaceFolder}/FlockingSimulation",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
             "stopAtEntry": false
