@@ -9,12 +9,12 @@ namespace FlockingBackend
         public Flock _flock;
         public Raven _raven;
         public List<Sparrow> _sparrows = new List<Sparrow>();
-        public static readonly int _initialCount;
-        public static readonly int _width;
-        public static readonly int _height;
-        public static readonly int _maxSpeed;
-        public static readonly int _neighbourRadius;
-        public static readonly int _avoidanceRadius;
+        public static int _initialCount {get;}
+        public static int _width {get;}
+        public static int _height {get;}
+        public static int _maxSpeed {get;}
+        public static int _neighbourRadius {get;}        
+        public static int _avoidanceRadius {get;}
 
         static World(){
             _initialCount = 150;
