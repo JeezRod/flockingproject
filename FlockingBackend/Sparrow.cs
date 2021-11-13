@@ -26,7 +26,8 @@ namespace FlockingBackend
             //TODO: Set the amountToSteer vector with the vectors returned by 
             //Cohesion, Alignment, Avoidance methods
             
-            this.amountToSteer = Alignment(sparrows) + Cohesion(sparrows) + Avoidance(sparrows);
+            this.amountToSteer = Alignment(sparrows)+ Cohesion(sparrows) + Avoidance(sparrows);
+            
         }
         ///<summary>
         ///This method is an event handler to calculate and update amountToSteer vector with the amount to steer to flee a chasing raven
@@ -44,15 +45,16 @@ namespace FlockingBackend
         private Vector2 Alignment (List<Sparrow> sparrows){
             float distance;
             int countSp = 0;
+            float squareRadius = (float)Math.Pow(World._neighbourRadius, 2);
             Vector2 result = new Vector2(0,0);
             foreach(Sparrow sp in sparrows){
-                distance =Vector2.DistanceSquared(this.Position, sp.Position);
-                if(distance < World._neighbourRadius && sp != this){
+                distance = Vector2.DistanceSquared(this.Position, sp.Position);
+                if(distance < squareRadius && sp != this){
                     result += sp.Velocity;
                     countSp ++;
                 }
             }
-            if(countSp != 0 ){
+            if(countSp != 0 || !(result.Vx == 0 && result.Vy == 0)){
                 result = result/countSp;
                 result = Vector2.NormalizeVector(result);
                 result = result * World._maxSpeed;
@@ -65,26 +67,27 @@ namespace FlockingBackend
         private Vector2 Cohesion (List<Sparrow> sparrows){
             float distance;
             int countSp = 0;
+            float squareRadius = (float)Math.Pow(World._neighbourRadius, 2);
             Vector2 result = new Vector2(0,0);
             foreach(Sparrow sp in sparrows){
-                distance =Vector2.DistanceSquared(this.Position, sp.Position);
-                if(distance < World._neighbourRadius && sp != this){
+                distance = Vector2.DistanceSquared(this.Position, sp.Position);
+                if(distance < squareRadius && sp != this){
                     result += sp.Position;
                     countSp ++;
                 }
             }
             if(countSp != 0){
                 //average 
-                result = result/countSp;
-                //Normalize vector
-                result = Vector2.NormalizeVector(result);
+                result = result / countSp;
                 // result is average position
                 result = result - this.Position;
+                
                 result = Vector2.NormalizeVector(result);
 
                 result = result * World._maxSpeed;
 
                 result = result - this.Velocity;
+
                 result = Vector2.NormalizeVector(result);  
             }
             return result;
@@ -92,30 +95,35 @@ namespace FlockingBackend
         private Vector2 Avoidance (List<Sparrow> sparrows){
             float distance;
             int countSp = 0;
+            float squareRadius = (float)Math.Pow(World._avoidanceRadius, 2);
             Vector2 result = new Vector2(0,0);
             foreach(Sparrow sp in sparrows){
                 distance = Vector2.DistanceSquared(this.Position, sp.Position);
-                if(distance < World._avoidanceRadius && sp != this){
-                    result = this.Position - sp.Position;
-                    result += result / distance;
+                if(distance < squareRadius && sp != this && distance != 0){
+                    Vector2 dif = this.Position - sp.Position;
+                    result += dif / distance;
                     countSp++;
                 }
             }
-            if(countSp != 0){
+            if(countSp != 0 || !(result.Vx == 0 && result.Vy == 0)){
                 result = result / countSp;
+                result = Vector2.NormalizeVector(result);
+                result = result * World._maxSpeed;
                 result = result - this.Velocity;
                 result = Vector2.NormalizeVector(result);
             }
             return result;
         }
         private Vector2 FleeRaven(Raven raven){
+            float squareRadius = (float)Math.Pow(World._avoidanceRadius, 2);
             Vector2 result = new Vector2(0,0);
             float distance = Vector2.DistanceSquared(this.Position, raven.Position);
-            if(distance < World._avoidanceRadius){
+            if(distance < squareRadius){
                 result = this.Position - raven.Position;
-                result = result/distance;
+                result = result / distance;
                 result = Vector2.NormalizeVector(result);
                 result = result * World._maxSpeed;
+                result = Vector2.NormalizeVector(result);
             }
             return result;
         }
