@@ -28,8 +28,8 @@ namespace FlockingSimulation
 
         protected override void Initialize()
         {
-            _graphics.PreferredBackBufferHeight = World._height;
-            _graphics.PreferredBackBufferWidth = World._width;
+            _graphics.PreferredBackBufferHeight = World.Height;
+            _graphics.PreferredBackBufferWidth = World.Width;
 
             sparrowFlockSprite = new SparrowFlockSprite(this, world._sparrows);
             Components.Add(sparrowFlockSprite);
