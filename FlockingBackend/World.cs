@@ -9,20 +9,20 @@ namespace FlockingBackend
         public Flock _flock;
         public Raven _raven;
         public List<Sparrow> _sparrows = new List<Sparrow>();
-        public static int _initialCount {get;}
-        public static int _width {get;}
-        public static int _height {get;}
-        public static int _maxSpeed {get;}
-        public static int _neighbourRadius {get;}        
-        public static int _avoidanceRadius {get;}
+        public static int InitialCount {get;}
+        public static int Width {get;}
+        public static int Height {get;}
+        public static int MaxSpeed {get;}
+        public static int NeighbourRadius {get;}        
+        public static int AvoidanceRadius {get;}
 
         static World(){
-            _initialCount = 150;
-            _width = 1000;
-            _height = 500;
-            _maxSpeed = 4;
-            _neighbourRadius = 100;
-            _avoidanceRadius = 50;
+            InitialCount = 150;
+            Width = 1000;
+            Height = 500;
+            MaxSpeed = 4;
+            NeighbourRadius = 100;
+            AvoidanceRadius = 50;
         }
         /*  A constructor that takes no inputs and initializes the Flock object and List<Sparrow>.The list should be populated with Sparrows at random positions on the screen.
             Each Sparrow in the list must also subscribe to the Flock by calling the Flock’s Subscribe method with the 3 event handler methods of the Sparrow class. See the Sparrow class section for more details on these event handler methods.
@@ -40,7 +40,7 @@ namespace FlockingBackend
 
         private List<Sparrow> PopulateSparrow(){
             List<Sparrow> newList = new List<Sparrow>();
-            for(int i=0; i<_initialCount; i++){
+            for(int i=0; i<InitialCount; i++){
                 Sparrow s = new Sparrow();
                 //Subscribe the Sparrow
                 _flock.Subscribe(s.CalculateBehaviour, s.Move, s.CalculateRavenAvoidance);
