@@ -22,7 +22,7 @@ namespace FlockingBackend
         //parameter-less constructor to random posstion and velocity
         public Bird(){
             Random ran = new Random();
-            this.Position = new Vector2(ran.Next(World._width), ran.Next(World._height));
+            this.Position = new Vector2(ran.Next(World.Width), ran.Next(World.Height));
             this.Velocity = new Vector2(ran.Next(-4, 5), ran.Next(-4, 5));
             this.amountToSteer = new Vector2(0,0);
 
@@ -45,21 +45,21 @@ namespace FlockingBackend
        public void AppearOnOppositeSide()
        {
     
-           if (this.Position.Vx > World._width)
+           if (this.Position.Vx > World.Width)
             {
                 this.Position = new Vector2(0, this.Position.Vy);
             }
             else if(this.Position.Vx < 0)
             {
-                 this.Position = new Vector2(World._width, this.Position.Vy);
+                 this.Position = new Vector2(World.Width, this.Position.Vy);
             }
-            if (this.Position.Vy > World._height)
+            if (this.Position.Vy > World.Height)
             {
                 this.Position = new Vector2(this.Position.Vx, 0);
             }
             else if(this.Position.Vy < 0)
             {
-                this.Position = new Vector2(this.Position.Vx, World._height);
+                this.Position = new Vector2(this.Position.Vx, World.Height);
             }
        }
 
