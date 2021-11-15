@@ -55,7 +55,7 @@ namespace FlockingBackend
                 }
             }
             if(countSp != 0 || !(result.Vx == 0 && result.Vy == 0)){
-                result = result/countSp;
+                result = result / countSp;
                 result = Vector2.NormalizeVector(result);
                 result = result * World.MaxSpeed;
                 result = result - this.Velocity;
