@@ -43,16 +43,17 @@ namespace FlockingBackend{
         private Vector2 ChaseSparrow(List<Sparrow> sparrows){
             float distance;
             float avoidanceSquareRadius = (float)Math.Pow(World.AvoidanceRadius,2);
+            float nearestDistance = avoidanceSquareRadius;
             Sparrow nearSparrow = null;
             Vector2 result = new Vector2(0,0);
 
             foreach(Sparrow sp in sparrows){
                 distance = Vector2.DistanceSquared(this.Position, sp.Position);
                 
-                if(distance < avoidanceSquareRadius){
+                if(distance < avoidanceSquareRadius && distance < nearestDistance){
                     // set the sparrow as the nearest to raven
                     nearSparrow = sp;
-                    
+                    nearestDistance = distance;
                 }
             }
 
