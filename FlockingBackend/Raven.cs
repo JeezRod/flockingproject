@@ -40,7 +40,7 @@ namespace FlockingBackend{
         ///This method is a private helper method to make sparrows reappear on the opposite edge if they go outside the bounds of the screen
         ///</summary>
 
-        private Vector2 ChaseSparrow(List<Sparrow> sparrows){
+        public Vector2 ChaseSparrow(List<Sparrow> sparrows){
             float distance;
             float avoidanceSquareRadius = (float)Math.Pow(World.AvoidanceRadius,2);
             float nearestDistance = avoidanceSquareRadius;
