@@ -42,7 +42,8 @@ namespace FlockingBackend
 
         //TODO: Code the following private helper methods to implement the flocking algorithm rules. 
         //The method headers are declared below:
-        private Vector2 Alignment (List<Sparrow> sparrows){
+        //Public methods for testing purposes 
+        public Vector2 Alignment (List<Sparrow> sparrows){
             float distance;
             int countSp = 0;
             float squareRadius = (float)Math.Pow(World.NeighbourRadius, 2);
@@ -64,7 +65,8 @@ namespace FlockingBackend
             return result;
         }
         
-        private Vector2 Cohesion (List<Sparrow> sparrows){
+        //Public methods for testing purposes 
+        public Vector2 Cohesion (List<Sparrow> sparrows){
             float distance;
             int countSp = 0;
             float squareRadius = (float)Math.Pow(World.NeighbourRadius, 2);
@@ -92,7 +94,9 @@ namespace FlockingBackend
             }
             return result;
         }
-        private Vector2 Avoidance (List<Sparrow> sparrows){
+
+        //Public methods for testing purposes 
+        public Vector2 Avoidance (List<Sparrow> sparrows){
             float distance;
             int countSp = 0;
             float squareRadius = (float)Math.Pow(World.AvoidanceRadius, 2);
@@ -114,7 +118,8 @@ namespace FlockingBackend
             }
             return result;
         }
-        private Vector2 FleeRaven(Raven raven){
+        //Public methods for testing purposes 
+        public Vector2 FleeRaven(Raven raven){
             float squareRadius = (float)Math.Pow(World.AvoidanceRadius, 2);
             Vector2 result = new Vector2(0,0);
             float distance = Vector2.DistanceSquared(this.Position, raven.Position);
