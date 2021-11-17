@@ -8,8 +8,18 @@ namespace FlockingBackend{
     ///</summary>
     public class Raven : Bird
     {
-        //TODO: Add the constructor, properties and fields as specified in the instructions document.
+        ///<summary>
+        //Invoke Bird parameter-less constructor
+        ///</summary>
         public Raven(): base(){}
+
+        ///<summary>
+        //Invoke Bird constructor with parameters
+        ///</summary>
+        ///<param name="posVx">factor X of Position Vector2 object</param>
+        ///<param name="posVy">factor Y of Position Vector2 object</param>
+        ///<param name="velVx">factor X of Velocity Vector2 object</param>
+        ///<param name="velVx">factor Y of Velocity Vector2 object</param>
 
         public Raven(int posVx, int posVy, int velVx, int velVy): base(posVx, posVy, velVx, velVy){}
 
@@ -20,7 +30,6 @@ namespace FlockingBackend{
         ///<param name="sparrows">List of sparrows</param>
         public override void CalculateBehaviour(List<Sparrow> sparrows) 
         {
-            //TODO: Set the amountToSteer vector with the vector returned by the ChaseSparrow.
             this.amountToSteer = ChaseSparrow(sparrows);
         }
 
@@ -28,18 +37,18 @@ namespace FlockingBackend{
         ///<summary>
         ///This method is an event handler that updates the velocity and position of a bird object.
         ///</summary>
-       public override void Move(){
+        public override void Move(){
            
            this.Velocity += this.amountToSteer;
            this.Velocity = Vector2.NormalizeVector(this.Velocity) * World.MaxSpeed;
            this.Position += this.Velocity;
            AppearOnOppositeSide();
-       }
+        }
        
-       ///<summary>
-        ///This method is a private helper method to make sparrows reappear on the opposite edge if they go outside the bounds of the screen
+        ///<summary>
+        //ChaseSparrow algorithm is to make the Raven chase the closest Sparrow 
         ///</summary>
-
+        ///<param name="sparrows">List of sparrows</param>
         public Vector2 ChaseSparrow(List<Sparrow> sparrows){
             float distance;
             float avoidanceSquareRadius = (float)Math.Pow(World.AvoidanceRadius,2);
