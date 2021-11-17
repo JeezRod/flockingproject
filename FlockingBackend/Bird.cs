@@ -19,7 +19,9 @@ namespace FlockingBackend
 
         protected Vector2 amountToSteer;
 
+        ///<summary>
         //parameter-less constructor to random posstion and velocity
+        ///</summary>
         public Bird(){
             Random ran = new Random();
             this.Position = new Vector2(ran.Next(World.Width), ran.Next(World.Height));
@@ -28,19 +30,23 @@ namespace FlockingBackend
 
         }
 
+        ///<summary>
         //parameterize constructor for testing
+        ///</summary>
+        ///<param name="posVx">factor X of Position Vector2 object</param>
+        ///<param name="posVy">factor Y of Position Vector2 object</param>
+        ///<param name="velVx">factor X of Velocity Vector2 object</param>
+        ///<param name="velVx">factor Y of Velocity Vector2 object</param>
         public Bird(int posVx, int posVy, int velVx, int velVy){
             this.Position = new Vector2(posVx, posVy);
             this.Velocity = new Vector2(velVx, velVy);
             this.amountToSteer = new Vector2(0,0);
         }
 
-        //TODO: Add the constructor, properties and fields as specified in the instructions document.
 
-        ///<value> Property <c>Rotation</c> to rotate the raven to face the direction it is moving toward.</value>
 
         ///<summary>
-        ///This method is a private helper method to make bird objects reappear on the opposite edge if they go outside the bounds of the screen
+        ///This method is a helper method to make bird objects reappear on the opposite edge if they go outside the bounds of the screen
         ///</summary>
        public void AppearOnOppositeSide()
        {

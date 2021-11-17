@@ -16,6 +16,9 @@ namespace FlockingBackend
         public static int NeighbourRadius {get;}        
         public static int AvoidanceRadius {get;}
 
+        ///<summary>
+        //Static constructor with static world's field
+        ///</summary>
         static World(){
             InitialCount = 150;
             Width = 1000;
@@ -24,12 +27,10 @@ namespace FlockingBackend
             NeighbourRadius = 100;
             AvoidanceRadius = 50;
         }
-        /*  A constructor that takes no inputs and initializes the Flock object and List<Sparrow>.The list should be populated with Sparrows at random positions on the screen.
-            Each Sparrow in the list must also subscribe to the Flock by calling the Flock’s Subscribe method with the 3 event handler methods of the Sparrow class. See the Sparrow class section for more details on these event handler methods.
-            Then, initialize the Raven object. Subscribe it to the Flock via the Flock object’s subscribe method and pass the 2 event handler methods to the subscribe method. See the Raven class section for more details on these event handler methods.
-            An Update method that simply invokes the Flock’s RaiseMoveEvents method and passes the List<Sparrow> and Raven object to it.
-        */
 
+        ///<summary>
+        //A constructor that takes no inputs and initializes the Flock object and List<Sparrow>
+        ///</summary>
         public World(){
             _flock = new Flock();
             _sparrows = PopulateSparrow();
@@ -38,6 +39,9 @@ namespace FlockingBackend
             _flock.Subscribe(_raven.CalculateBehaviour, _raven.Move);
         }
 
+        ///<summary>
+        //Populate List<Sparrow>
+        ///</summary>
         private List<Sparrow> PopulateSparrow(){
             List<Sparrow> newList = new List<Sparrow>();
             for(int i=0; i<InitialCount; i++){
@@ -49,6 +53,9 @@ namespace FlockingBackend
             return newList;
         }
 
+        ///<summary>
+        //Invoke RaiseMoveEvents method
+        ///</summary>
         public void Update(){
             _flock.RaiseMoveEvents(_sparrows, _raven);
         }

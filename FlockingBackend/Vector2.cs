@@ -7,6 +7,9 @@ namespace FlockingBackend
         private float vx;
         private float vy;
 
+        ///<summary>
+        //Parameter constructor to initialize factor X and Y of Vector2 object
+        ///</summary>
         public Vector2(float vx, float vy){
             this.vx = vx;
             this.vy = vy;
@@ -19,45 +22,45 @@ namespace FlockingBackend
             get{ return vy;}
         }
 
-        /*
-        *   Overloading the sum operator to sum vectors.
-        */
+        ///<summary>
+        //Overloading the sum operator to sum vectors.
+        ///<summary>
         public static Vector2 operator +(Vector2 u, Vector2 v){
             return new Vector2(u.vx + v.vx, u.vy + v.vy);
         }
 
-        /*
-        *   Overloading the minus operator to substract vectors.
-        */
+        ///<summary>
+        //Overloading the minus operator to substract vectors.
+        ///<summary>
         public static Vector2 operator -(Vector2 u, Vector2 v){
             return new Vector2(u.vx - v.vx, u.vy - v.vy);
         }
 
-        /*
-        *   Overloading the dividend operator to divide vectors by a scalar.
-        */
+        ///<summary>
+        //Overloading the dividend operator to divide vectors by a scalar.
+        ///</summary>
         public static Vector2 operator /(Vector2 u, float c){
             return new Vector2(u.vx/c, u.vy/c);
         }
 
-        /*
-        *   Overloading the product operator to multiply a vector and scalar.
-        */
+        ///<summary>
+        //Overloading the product operator to multiply a vector and scalar.
+        ///</summary>
 
         public static Vector2 operator *(Vector2 u, float c){
             return new Vector2(u.vx * c, u.vy * c);
         }
 
-        /*
-        *   This method takes two vectors and calculates the square root of the distance.
-        */
+        ///<summary>
+        //This method takes two vectors and calculates the square root of the distance.
+        ///</summary>
         public static float DistanceSquared(Vector2 u, Vector2 v){
             return (float)(Math.Pow((u.vx - v.vx), 2) + Math.Pow((u.vy - v.vy), 2));
         }
 
-        /*
-        *   This method Normalizes a vector and returns a new Vector.
-        */
+        ///<summary>
+        //This method Normalizes a vector and returns a new Vector.
+        ///<summary>
         public static Vector2 NormalizeVector(Vector2 u){
             float magnitud = (float)Math.Sqrt((u.vx*u.vx) + (u.vy*u.vy));
             if(magnitud != 0){
